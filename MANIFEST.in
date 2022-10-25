@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include greeny *.css
+recursive-include greeny *.csv
+recursive-include greeny *.html
+recursive-include greeny *.ico
+recursive-include greeny *.js
+recursive-include greeny *.json
+recursive-include greeny *.md
+recursive-include greeny *.png
+recursive-include greeny *.py
+recursive-include greeny *.svg
+recursive-include greeny *.txt
+recursive-exclude greeny *.pyc
