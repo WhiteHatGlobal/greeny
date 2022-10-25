@@ -188,3 +188,8 @@ override_doctype_class = {
 # auth_hooks = [
 #	"greeny.auth.validate"
 # ]
+fixtures = [
+	 "Custom Field",
+	 "Client Script",
+	 "Property Setter"
+]
