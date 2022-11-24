@@ -2,6 +2,17 @@
  {
   "docstatus": 0,
   "doctype": "Client Script",
+  "dt": "Invoice Processing",
+  "enabled": 1,
+  "modified": "2022-08-24 14:03:26.399435",
+  "module": null,
+  "name": "Invoice Processing",
+  "script": "frappe.ui.form.on('Invoice Processing', {\n\trefresh(frm) {\n\t\tthis.add_button([button_name], \"default\", function() { /*actions*/\n\t\t})\n\t},\n\n\tadd_button(name, type, action, wrapper_class=\".page-actions\") {\n\t\tconst button = document.createElement(\"button\");\n\t\tbutton.classList.add(\"btn\", \"btn-\" + type, \"btn-sm\", \"ml-2\");\n\t\tbutton.innerHTML = name;\n\t\tbutton.onclick = action;\n\t\tdocument.querySelector(wrapper_class).prepend(button);\n\n\t}\n})",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
   "dt": "Purchase Order",
   "enabled": 1,
   "modified": "2022-10-15 11:34:22.737005",
