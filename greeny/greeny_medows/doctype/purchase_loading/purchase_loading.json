@@ -1,0 +1,168 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2022-11-25 23:54:56.512911",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "amended_from",
+  "section_break_3",
+  "purchase_invoice",
+  "supplier",
+  "column_break_7",
+  "date",
+  "coconut_qty",
+  "loading_details_section",
+  "loading_details_table",
+  "loading_by_others_section",
+  "others_loading",
+  "section_break_13",
+  "total_greeny",
+  "column_break_15",
+  "total_others",
+  "column_break_17",
+  "total_loading_qty"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "options": "PL./.YY./.####"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Purchase Loading",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "purchase_invoice",
+   "fieldtype": "Link",
+   "label": "Purchase Invoice",
+   "options": "Purchase Invoice"
+  },
+  {
+   "fetch_from": "purchase_invoice.supplier",
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "purchase_invoice.posting_date",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date"
+  },
+  {
+   "bold": 1,
+   "fetch_from": "purchase_invoice.number_of_coconant",
+   "fieldname": "coconut_qty",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Coconut Qty"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Purchase Loading",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "loading_details_section",
+   "fieldtype": "Section Break",
+   "label": "Loading by Greeny Employees"
+  },
+  {
+   "fieldname": "loading_details_table",
+   "fieldtype": "Table",
+   "options": "Loading Details"
+  },
+  {
+   "fieldname": "loading_by_others_section",
+   "fieldtype": "Section Break",
+   "label": "Loading by Others"
+  },
+  {
+   "fieldname": "others_loading",
+   "fieldtype": "Table",
+   "options": "Loading Others"
+  },
+  {
+   "fieldname": "total_greeny",
+   "fieldtype": "Float",
+   "label": "Total Loading by Greeny Employees"
+  },
+  {
+   "fieldname": "total_others",
+   "fieldtype": "Float",
+   "label": "Total Loading by Others"
+  },
+  {
+   "fieldname": "total_loading_qty",
+   "fieldtype": "Float",
+   "label": "Total Loading Qty"
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-11-26 00:03:36.438350",
+ "modified_by": "Administrator",
+ "module": "Greeny Medows",
+ "name": "Purchase Loading",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "supplier",
+ "track_changes": 1
+}

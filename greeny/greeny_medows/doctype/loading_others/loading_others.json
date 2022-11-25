@@ -1,22 +1,20 @@
 {
  "actions": [],
- "allow_rename": 1,
- "creation": "2022-11-03 18:17:36.325373",
- "default_view": "List",
+ "autoname": "autoincrement",
+ "creation": "2022-11-26 00:00:51.702659",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "employee",
+  "name1",
   "qty"
  ],
  "fields": [
   {
-   "fieldname": "employee",
-   "fieldtype": "Link",
+   "fieldname": "name1",
+   "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Employee",
-   "options": "Employee"
+   "label": "Name"
   },
   {
    "fieldname": "qty",
@@ -28,10 +26,11 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-11-25 23:58:24.632485",
+ "modified": "2022-11-26 00:00:51.702659",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
- "name": "Loading Details",
+ "name": "Loading Others",
+ "naming_rule": "Autoincrement",
  "owner": "Administrator",
  "permissions": [],
  "sort_field": "modified",
