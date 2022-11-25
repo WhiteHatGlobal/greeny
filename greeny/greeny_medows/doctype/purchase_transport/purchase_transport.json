@@ -19,7 +19,11 @@
   "transport_type",
   "vehicle",
   "vehicle_number",
-  "driver"
+  "driver",
+  "transport_charges",
+  "other_transport_section",
+  "transport_supplier",
+  "bill_amount"
  ],
  "fields": [
   {
@@ -105,12 +109,35 @@
    "fieldtype": "Data",
    "label": "Vehicle Number",
    "mandatory_depends_on": "eval:doc.transport_type == \"Other Vehicle\""
+  },
+  {
+   "depends_on": "eval:doc.transport_type == \"Other Vehicle\"",
+   "fieldname": "other_transport_section",
+   "fieldtype": "Section Break",
+   "label": "Other Transport"
+  },
+  {
+   "fieldname": "transport_supplier",
+   "fieldtype": "Link",
+   "label": "Transport Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "bill_amount",
+   "fieldtype": "Currency",
+   "label": "Bill Amount"
+  },
+  {
+   "depends_on": "eval:doc.transport_type == \"Own Vehicle\"",
+   "fieldname": "transport_charges",
+   "fieldtype": "Currency",
+   "label": "Transport Charges"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-11-25 23:53:47.047722",
+ "modified": "2022-11-26 00:16:35.805440",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
  "name": "Purchase Transport",

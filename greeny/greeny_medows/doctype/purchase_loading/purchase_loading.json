@@ -22,10 +22,13 @@
   "others_loading",
   "section_break_13",
   "total_greeny",
+  "greeny_loading_amount",
   "column_break_15",
   "total_others",
+  "others_loading_amount",
   "column_break_17",
-  "total_loading_qty"
+  "total_loading_qty",
+  "total_loading_amount"
  ],
  "fields": [
   {
@@ -112,17 +115,21 @@
   {
    "fieldname": "total_greeny",
    "fieldtype": "Float",
-   "label": "Total Loading by Greeny Employees"
+   "label": "Total Loading by Greeny Employees",
+   "precision": "0"
   },
   {
    "fieldname": "total_others",
    "fieldtype": "Float",
-   "label": "Total Loading by Others"
+   "label": "Total Loading by Others",
+   "precision": "0"
   },
   {
+   "bold": 1,
    "fieldname": "total_loading_qty",
    "fieldtype": "Float",
-   "label": "Total Loading Qty"
+   "label": "Total Loading Qty",
+   "precision": "0"
   },
   {
    "fieldname": "section_break_13",
@@ -135,12 +142,27 @@
   {
    "fieldname": "column_break_17",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "greeny_loading_amount",
+   "fieldtype": "Currency",
+   "label": "Greeny Loading Amount"
+  },
+  {
+   "fieldname": "others_loading_amount",
+   "fieldtype": "Currency",
+   "label": "Others Loading Amount"
+  },
+  {
+   "fieldname": "total_loading_amount",
+   "fieldtype": "Currency",
+   "label": "Total Loading Amount"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-11-26 00:03:36.438350",
+ "modified": "2022-11-26 00:20:50.077133",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
  "name": "Purchase Loading",
