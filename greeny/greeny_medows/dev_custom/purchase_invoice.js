@@ -1,5 +1,26 @@
 
+frappe.ui.form.on('Purchase Invoice', {
 
+    on_submit: function(){
+        frappe.call({
+			method:"greeny.greeny_medows.dev_custom.purchase_sales.purchase_loading",
+			args: {
+                
+                "name":cur_frm.doc.name,
+                "date":cur_frm.doc.due_date,
+                "supplier":cur_frm.doc.supplier,
+                "coconant":cur_frm.doc.number_of_coconant,
+            },
+            callback(r){
+				console.log("fdgdg")
+			}
+		})
+}
+
+
+
+
+})
 function set_uom(frm,cdt,cdn){
 	let row=locals[cdt][cdn];
 	if(row.item_code){
