@@ -2,7 +2,6 @@
 frappe.ui.form.on('Purchase Loading', {
 
     validate: function(frm, cdt, cdn){
-        console.log("gfdguhiu")
         var d = locals[cdt][cdn];
         var qty = 0;
         frm.doc.loading_details_table.forEach(function (d) { qty += d.qty; });
@@ -50,8 +49,45 @@ after_save: function(frm){
 
     }
    
+}
+})
 
+
+
+function amount(frm,cdt,cdn){
+	let row=locals[cdt][cdn];
+    let tot_amount=row.qty * row.rate
+            frappe.model.set_value(cdt, cdn, "amount", tot_amount);
+    
 }
 
 
+frappe.ui.form.on('Loading Details', {
+    qty:function(frm,cdt,cdn){
+    amount(frm,cdt,cdn);
+},
+rate:function(frm,cdt,cdn){
+    amount(frm,cdt,cdn);
+},
 })
+
+
+function ot_amount(frm,cdt,cdn){
+	let row=locals[cdt][cdn];
+    let tot_amount=row.qty * row.rate
+            frappe.model.set_value(cdt, cdn, "amount", tot_amount);
+    
+}
+
+
+frappe.ui.form.on('Loading Others', {
+    qty:function(frm,cdt,cdn){
+    ot_amount(frm,cdt,cdn);
+},
+rate:function(frm,cdt,cdn){
+    ot_amount(frm,cdt,cdn);
+},
+})
+
+
+
