@@ -1,0 +1,154 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2022-12-01 21:23:50.258283",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "section_break_3",
+  "sales_invoice",
+  "customer",
+  "coconut_qty",
+  "column_break_7",
+  "date",
+  "transport_type",
+  "vehicle",
+  "vehicle_number",
+  "driver",
+  "transport_charges",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "options": "PT./.YY./.####"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Sales Transport",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "label": "Sales Invoice",
+   "options": "Sales Invoice"
+  },
+  {
+   "fetch_from": "purchase_invoice.supplier",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fetch_from": "purchase_invoice.number_of_coconant",
+   "fieldname": "coconut_qty",
+   "fieldtype": "Data",
+   "label": "Coconut Qty"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "purchase_invoice.posting_date",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fetch_from": "purchase_invoice.transport_type",
+   "fieldname": "transport_type",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Transport Type",
+   "options": "\nOwn Vehicle\nOther Vehicle"
+  },
+  {
+   "depends_on": "eval:doc.transport_type == \"Own Vehicle\"",
+   "fetch_from": "purchase_invoice.vehicle",
+   "fieldname": "vehicle",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Vehicle",
+   "mandatory_depends_on": "eval:doc.transport_type == \"Own Vehicle\"",
+   "options": "Vehicle"
+  },
+  {
+   "depends_on": "eval:doc.transport_type == \"Other Vehicle\"",
+   "fieldname": "vehicle_number",
+   "fieldtype": "Data",
+   "label": "Vehicle Number",
+   "mandatory_depends_on": "eval:doc.transport_type == \"Other Vehicle\""
+  },
+  {
+   "fetch_from": "vehicle.employee",
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Driver",
+   "options": "Employee"
+  },
+  {
+   "depends_on": "eval:doc.transport_type == \"Own Vehicle\"",
+   "fieldname": "transport_charges",
+   "fieldtype": "Currency",
+   "label": "Transport Charges"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Sales Transport",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-12-01 21:24:20.055850",
+ "modified_by": "Administrator",
+ "module": "Greeny Medows",
+ "name": "Sales Transport",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "customer",
+ "track_changes": 1
+}

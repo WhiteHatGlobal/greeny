@@ -1,0 +1,189 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2022-12-01 21:22:36.317667",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "section_break_3",
+  "sales_invoice",
+  "customer",
+  "column_break_7",
+  "date",
+  "coconut_qty",
+  "loading_details_section",
+  "loading_details_table",
+  "loading_by_others_section",
+  "others_loading",
+  "section_break_13",
+  "total_greeny",
+  "greeny_loading_amount",
+  "column_break_15",
+  "total_others",
+  "others_loading_amount",
+  "column_break_17",
+  "total_loading_qty",
+  "total_loading_amount",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "options": "SL./.YY./.####"
+  },
+  {
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "label": "Sales Invoice",
+   "options": "Sales Invoice"
+  },
+  {
+   "fetch_from": "purchase_invoice.supplier",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "purchase_invoice.posting_date",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date"
+  },
+  {
+   "bold": 1,
+   "fetch_from": "purchase_invoice.number_of_coconant",
+   "fieldname": "coconut_qty",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Coconut Qty"
+  },
+  {
+   "fieldname": "loading_details_section",
+   "fieldtype": "Section Break",
+   "label": "Loading by Greeny Employees"
+  },
+  {
+   "fieldname": "loading_details_table",
+   "fieldtype": "Table",
+   "options": "Loading Details"
+  },
+  {
+   "fieldname": "loading_by_others_section",
+   "fieldtype": "Section Break",
+   "label": "Loading by Others"
+  },
+  {
+   "fieldname": "others_loading",
+   "fieldtype": "Table",
+   "options": "Loading Others"
+  },
+  {
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_greeny",
+   "fieldtype": "Float",
+   "label": "Total Loading by Greeny Employees",
+   "precision": "0"
+  },
+  {
+   "fieldname": "greeny_loading_amount",
+   "fieldtype": "Currency",
+   "label": "Greeny Loading Amount"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_others",
+   "fieldtype": "Float",
+   "label": "Total Loading by Others",
+   "precision": "0"
+  },
+  {
+   "fieldname": "others_loading_amount",
+   "fieldtype": "Currency",
+   "label": "Others Loading Amount"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "bold": 1,
+   "fieldname": "total_loading_qty",
+   "fieldtype": "Float",
+   "label": "Total Loading Qty",
+   "precision": "0"
+  },
+  {
+   "fieldname": "total_loading_amount",
+   "fieldtype": "Currency",
+   "label": "Total Loading Amount"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Sales Loading",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Sales Loading",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-12-01 21:23:00.147380",
+ "modified_by": "Administrator",
+ "module": "Greeny Medows",
+ "name": "Sales Loading",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

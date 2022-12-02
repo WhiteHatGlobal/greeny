@@ -10,6 +10,9 @@ frappe.ui.form.on('Purchase Invoice', {
                 "date":cur_frm.doc.due_date,
                 "supplier":cur_frm.doc.supplier,
                 "coconant":cur_frm.doc.number_of_coconant,
+                "trans_type":cur_frm.doc.transport_type,
+                "vehicle":cur_frm.doc.vehicle,
+                "driver":cur_frm.doc.driver_name_whg,
             },
             callback(r){
 				console.log("fdgdg")
