@@ -2,6 +2,25 @@
 frappe.ui.form.on('Purchase Invoice', {
 
     on_submit: function(){
+        if(cur_frm.doc.transport_type=="Other Vehicle"){
+        frappe.call({
+			method:"greeny.greeny_medows.dev_custom.purchase_sales.purchase_loading",
+			args: {
+                
+                "name":cur_frm.doc.name,
+                "date":cur_frm.doc.due_date,
+                "supplier":cur_frm.doc.supplier,
+                "coconant":cur_frm.doc.number_of_coconant,
+                "trans_type":cur_frm.doc.transport_type,
+                "vehicle":cur_frm.doc.vehicle_number,
+                "driver":cur_frm.doc.driver_name,
+            },
+            callback(r){
+				console.log("fdgdg")
+			}
+		})
+    }
+    if(cur_frm.doc.transport_type=="Own Vehicle"){
         frappe.call({
 			method:"greeny.greeny_medows.dev_custom.purchase_sales.purchase_loading",
 			args: {
@@ -12,12 +31,13 @@ frappe.ui.form.on('Purchase Invoice', {
                 "coconant":cur_frm.doc.number_of_coconant,
                 "trans_type":cur_frm.doc.transport_type,
                 "vehicle":cur_frm.doc.vehicle,
-                "driver":cur_frm.doc.driver_name_whg,
+                "driver":cur_frm.doc.driver_name,
             },
             callback(r){
 				console.log("fdgdg")
 			}
 		})
+    }
 }
 
 

@@ -1,5 +1,5 @@
 
-frappe.ui.form.on('Purchase Loading', {
+frappe.ui.form.on('Sales Loading', {
 
     validate: function(frm, cdt, cdn){
         var d = locals[cdt][cdn];
@@ -50,14 +50,12 @@ after_save: function(frm){
 })
 
 
-
 function amount(frm,cdt,cdn){
 	let row=locals[cdt][cdn];
     let tot_amount=row.qty * row.rate
             frappe.model.set_value(cdt, cdn, "amount", tot_amount);
     
 }
-
 
 frappe.ui.form.on('Loading Details', {
     qty:function(frm,cdt,cdn){
@@ -85,6 +83,3 @@ rate:function(frm,cdt,cdn){
     ot_amount(frm,cdt,cdn);
 },
 })
-
-
-

@@ -1,4 +1,36 @@
 
+frappe.ui.form.on('Sales Invoice', {
+
+    before_save: function(){
+        console.log("hjbhbhj")
+
+        frappe.call({
+			method:"greeny.greeny_medows.dev_custom.purchase_sales.sales_loading",
+			args: {
+                
+                "name":cur_frm.doc.name,
+                "date":cur_frm.doc.due_date,
+                "customer":cur_frm.doc.customer,
+                "coconant":cur_frm.doc.number_of_coconant,
+                "trans_type":cur_frm.doc.transport_type_whg,
+                "vehicle":cur_frm.doc.vehicle_whg2,
+                "vehicle2":cur_frm.doc.vehicle_number_whg2,
+                "driver":cur_frm.doc.driver_name_whg,
+            },
+            callback(r){
+				console.log("fdgdg")
+			}
+		})
+}
+
+
+
+
+})
+
+
+
+
 
 function set_uom(frm,cdt,cdn){
 	let row=locals[cdt][cdn];

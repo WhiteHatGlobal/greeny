@@ -30,7 +30,6 @@ override_doctype_class = {
 
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
-
 # include js in doctype views
 
 doctype_js = {"Purchase Receipt" : "/greeny_medows/dev_custom/purchase_receipt.js",
@@ -38,6 +37,8 @@ doctype_js = {"Purchase Receipt" : "/greeny_medows/dev_custom/purchase_receipt.j
 			  "Sales Invoice" : "/greeny_medows/dev_custom/sales_invoice.js",
 			  "Stock Entry" : "/greeny_medows/dev_custom/stock_entry.js",
 			  "Purchase Loading":"/greeny_medows/dev_custom/purchase_loading.js",
+			  "Sales Loading":"/greeny_medows/dev_custom/sales_loading.js",
+			  "Purchase Transport":"/greeny_medows/dev_custom/purchase_transport.js",
 			  }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
