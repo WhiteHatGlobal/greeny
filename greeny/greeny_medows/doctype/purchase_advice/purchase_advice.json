@@ -1,0 +1,366 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2022-12-03 14:55:11.722677",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "supplier_name",
+  "supplier",
+  "column_break_4",
+  "date",
+  "section_break_6",
+  "qty",
+  "column_break_8",
+  "weight",
+  "section_break_9",
+  "bag_type",
+  "bag_weight_domestic",
+  "bag_weight_international",
+  "weight_without_bag",
+  "column_break_14",
+  "no_of_bags",
+  "weight_less",
+  "net_weight",
+  "transport_rate",
+  "transport_details_section",
+  "transport_type",
+  "own_vehicle_section",
+  "vehicle",
+  "driver",
+  "driver_name",
+  "transport_charges",
+  "column_break_15",
+  "starting_km",
+  "ending_km",
+  "total_km",
+  "other_vehicle_section",
+  "vehicle_no",
+  "transport_supplier",
+  "bill_amount",
+  "loading_details_section",
+  "loading_details_table",
+  "others_loading",
+  "section_break_29",
+  "total_greeny",
+  "greeny_loading_amount",
+  "column_break_32",
+  "total_others",
+  "others_loading_amount",
+  "column_break_35",
+  "total_loading_qty",
+  "total_loading_amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "options": "PUR.MM.YY.-.###"
+  },
+  {
+   "fieldname": "supplier_name",
+   "fieldtype": "Data",
+   "label": "Supplier Name"
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier",
+   "permlevel": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break",
+   "label": "Item Details"
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "label": "Coconut Qty (Nos)",
+   "precision": "0"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "label": "Coconut Weight (Kgs)",
+   "precision": "0"
+  },
+  {
+   "fieldname": "transport_details_section",
+   "fieldtype": "Section Break",
+   "label": "Transport Details"
+  },
+  {
+   "fieldname": "transport_type",
+   "fieldtype": "Select",
+   "label": "Transport Type",
+   "options": "\nOwn Vehicle\nOther Vehicle"
+  },
+  {
+   "fieldname": "vehicle",
+   "fieldtype": "Link",
+   "label": "Vehicle",
+   "mandatory_depends_on": "eval:doc.transport_type == \"Own Vehicle\"",
+   "options": "Vehicle"
+  },
+  {
+   "fieldname": "driver",
+   "fieldtype": "Link",
+   "label": "Driver",
+   "mandatory_depends_on": "eval:doc.transport_type == \"Own Vehicle\"",
+   "options": "Employee"
+  },
+  {
+   "depends_on": "eval:doc.transport_type == \"Own Vehicle\"",
+   "fetch_from": "driver.employee_name",
+   "fieldname": "driver_name",
+   "fieldtype": "Data",
+   "label": "Driver Name",
+   "mandatory_depends_on": "eval:doc.transport_type == \"Own Vehicle\""
+  },
+  {
+   "depends_on": "eval:doc.transport_type == \"Own Vehicle\"",
+   "fieldname": "own_vehicle_section",
+   "fieldtype": "Section Break",
+   "label": "Own Vehicle"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "starting_km",
+   "fieldtype": "Float",
+   "label": "Starting Km",
+   "mandatory_depends_on": "vehicle",
+   "precision": "0"
+  },
+  {
+   "fieldname": "ending_km",
+   "fieldtype": "Float",
+   "label": "Ending Km",
+   "mandatory_depends_on": "vehicle",
+   "precision": "0"
+  },
+  {
+   "fieldname": "total_km",
+   "fieldtype": "Float",
+   "label": "Total Km",
+   "precision": "0",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.transport_type == \"Other Vehicle\"",
+   "fieldname": "other_vehicle_section",
+   "fieldtype": "Section Break",
+   "label": "Other Vehicle"
+  },
+  {
+   "fieldname": "vehicle_no",
+   "fieldtype": "Data",
+   "label": "Vehicle No"
+  },
+  {
+   "fieldname": "transport_charges",
+   "fieldtype": "Currency",
+   "label": "Transport Charges"
+  },
+  {
+   "default": ".8",
+   "fieldname": "transport_rate",
+   "fieldtype": "Data",
+   "label": "Transport Rate",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "transport_supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "bill_amount",
+   "fieldtype": "Currency",
+   "label": "Bill Amount"
+  },
+  {
+   "depends_on": "eval:doc.transport_type == \"Own Vehicle\"",
+   "fieldname": "loading_details_section",
+   "fieldtype": "Section Break",
+   "label": "Loading Details"
+  },
+  {
+   "fieldname": "loading_details_table",
+   "fieldtype": "Table",
+   "label": "Loading by Greeny Employees",
+   "options": "Loading Details"
+  },
+  {
+   "fieldname": "others_loading",
+   "fieldtype": "Table",
+   "label": "Loading by Others",
+   "options": "Loading Others"
+  },
+  {
+   "depends_on": "eval:doc.transport_type == \"Own Vehicle\"",
+   "fieldname": "section_break_29",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_greeny",
+   "fieldtype": "Float",
+   "label": "Total Loading by Greeny Employees"
+  },
+  {
+   "fieldname": "greeny_loading_amount",
+   "fieldtype": "Currency",
+   "label": "Greeny Loading Amount"
+  },
+  {
+   "fieldname": "column_break_32",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_others",
+   "fieldtype": "Float",
+   "label": "Total Loading by Others"
+  },
+  {
+   "fieldname": "others_loading_amount",
+   "fieldtype": "Currency",
+   "label": "Others Loading Amount"
+  },
+  {
+   "fieldname": "column_break_35",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_loading_qty",
+   "fieldtype": "Float",
+   "label": "Total Loading Qty"
+  },
+  {
+   "fieldname": "total_loading_amount",
+   "fieldtype": "Currency",
+   "label": "Total Loading Amount"
+  },
+  {
+   "fieldname": "section_break_9",
+   "fieldtype": "Section Break",
+   "label": "Purchase Process"
+  },
+  {
+   "fieldname": "bag_type",
+   "fieldtype": "Select",
+   "label": "Bag Type",
+   "options": "\nNo bag\nDomestic\nInternational",
+   "permlevel": 1
+  },
+  {
+   "default": "0.800",
+   "depends_on": "eval:doc.bag_type == \"Domestic\"",
+   "fieldname": "bag_weight_domestic",
+   "fieldtype": "Float",
+   "label": "Bag Weight Domestic",
+   "permlevel": 1
+  },
+  {
+   "default": "0.056",
+   "depends_on": "eval:doc.bag_type == \"International\"",
+   "fieldname": "bag_weight_international",
+   "fieldtype": "Float",
+   "label": "Bag Weight International",
+   "permlevel": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "weight_without_bag",
+   "fieldtype": "Float",
+   "label": "Weight Without Bag",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "no_of_bags",
+   "fieldtype": "Float",
+   "label": "No of Bags",
+   "permlevel": 1,
+   "precision": "0"
+  },
+  {
+   "default": "3",
+   "fieldname": "weight_less",
+   "fieldtype": "Float",
+   "label": "Weight Less",
+   "permlevel": 1,
+   "precision": "2"
+  },
+  {
+   "fieldname": "net_weight",
+   "fieldtype": "Float",
+   "label": "Net Weight (Kg)",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2022-12-03 22:30:37.316170",
+ "modified_by": "Administrator",
+ "module": "Greeny Medows",
+ "name": "Purchase Advice",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
