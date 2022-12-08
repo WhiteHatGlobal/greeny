@@ -2,30 +2,30 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "naming_series:",
- "creation": "2022-12-03 14:55:11.722677",
+ "creation": "2022-12-08 16:37:46.130756",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
+  "customer_name",
   "supplier_name",
-  "supplier",
   "column_break_4",
   "date",
   "section_break_6",
   "qty",
   "column_break_8",
   "weight",
-  "section_break_9",
+  "sales_process_section",
   "bag_type",
   "bag_weight_domestic",
   "bag_weight_international",
   "weight_without_bag",
-  "column_break_14",
+  "colw_column",
   "no_of_bags",
   "weight_less",
-  "net_weight",
+  "net_weight_kg",
   "transport_rate",
   "transport_details_section",
   "transport_type",
@@ -67,16 +67,8 @@
    "options": "PUR.MM.YY.-.###"
   },
   {
-   "fieldname": "supplier_name",
-   "fieldtype": "Data",
-   "label": "Supplier Name"
-  },
-  {
-   "fieldname": "supplier",
-   "fieldtype": "Link",
-   "label": "Supplier",
-   "options": "Supplier",
-   "permlevel": 1
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
   },
   {
    "default": "Today",
@@ -84,10 +76,6 @@
    "fieldtype": "Datetime",
    "label": "Date",
    "read_only": 1
-  },
-  {
-   "fieldname": "column_break_4",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "section_break_6",
@@ -99,6 +87,10 @@
    "fieldtype": "Float",
    "label": "Coconut Qty (Nos)",
    "precision": "0"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "weight",
@@ -116,6 +108,12 @@
    "fieldtype": "Select",
    "label": "Transport Type",
    "options": "\nOwn Vehicle\nOther Vehicle"
+  },
+  {
+   "depends_on": "eval:doc.transport_type == \"Own Vehicle\"",
+   "fieldname": "own_vehicle_section",
+   "fieldtype": "Section Break",
+   "label": "Own Vehicle"
   },
   {
    "fieldname": "vehicle",
@@ -140,10 +138,9 @@
    "mandatory_depends_on": "eval:doc.transport_type == \"Own Vehicle\""
   },
   {
-   "depends_on": "eval:doc.transport_type == \"Own Vehicle\"",
-   "fieldname": "own_vehicle_section",
-   "fieldtype": "Section Break",
-   "label": "Own Vehicle"
+   "fieldname": "transport_charges",
+   "fieldtype": "Currency",
+   "label": "Transport Charges"
   },
   {
    "fieldname": "column_break_15",
@@ -182,16 +179,10 @@
    "label": "Vehicle No"
   },
   {
-   "fieldname": "transport_charges",
-   "fieldtype": "Currency",
-   "label": "Transport Charges"
-  },
-  {
-   "default": ".8",
-   "fieldname": "transport_rate",
+   "fieldname": "driver_name_w",
    "fieldtype": "Data",
-   "label": "Transport Rate",
-   "permlevel": 1
+   "hidden": 1,
+   "label": "Driver Name"
   },
   {
    "fieldname": "transport_supplier",
@@ -272,71 +263,6 @@
    "read_only": 1
   },
   {
-   "fieldname": "section_break_9",
-   "fieldtype": "Section Break",
-   "label": "Purchase Process"
-  },
-  {
-   "fieldname": "bag_type",
-   "fieldtype": "Select",
-   "label": "Bag Type",
-   "options": "\nNo bag\nDomestic\nInternational",
-   "permlevel": 1
-  },
-  {
-   "default": "0.800",
-   "depends_on": "eval:doc.bag_type == \"Domestic\"",
-   "fieldname": "bag_weight_domestic",
-   "fieldtype": "Float",
-   "label": "Bag Weight Domestic",
-   "permlevel": 1
-  },
-  {
-   "default": "0.056",
-   "depends_on": "eval:doc.bag_type == \"International\"",
-   "fieldname": "bag_weight_international",
-   "fieldtype": "Float",
-   "label": "Bag Weight International",
-   "permlevel": 1
-  },
-  {
-   "default": "0",
-   "depends_on": "eval:doc.bag_type == \"No bag\"",
-   "fieldname": "weight_without_bag",
-   "fieldtype": "Float",
-   "label": "Weight Without Bag",
-   "permlevel": 1
-  },
-  {
-   "fieldname": "no_of_bags",
-   "fieldtype": "Float",
-   "label": "No of Bags",
-   "permlevel": 1,
-   "precision": "0"
-  },
-  {
-   "default": "3",
-   "fieldname": "weight_less",
-   "fieldtype": "Float",
-   "label": "Weight Less",
-   "permlevel": 1,
-   "precision": "2"
-  },
-  {
-   "fieldname": "net_weight",
-   "fieldtype": "Float",
-   "label": "Net Weight (Kg)",
-   "permlevel": 1
-  },
-  {
-   "fieldname": "column_break_14",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_8",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -344,12 +270,6 @@
    "options": "Purchase Advice",
    "print_hide": 1,
    "read_only": 1
-  },
-  {
-   "fieldname": "driver_name_w",
-   "fieldtype": "Data",
-   "hidden": 1,
-   "label": "Driver Name"
   },
   {
    "depends_on": "eval:doc.transport_type == \"Own Vehicle\"",
@@ -361,15 +281,83 @@
    "fieldname": "expense_details",
    "fieldtype": "Table",
    "options": "Expense Details"
+  },
+  {
+   "fieldname": "supplier_name",
+   "fieldtype": "Link",
+   "label": "Cutomer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name"
+  },
+  {
+   "fieldname": "sales_process_section",
+   "fieldtype": "Section Break",
+   "label": "Sales Process"
+  },
+  {
+   "fieldname": "bag_type",
+   "fieldtype": "Select",
+   "label": "Bag Type",
+   "options": "\nNo bag\nDomestic\nInternational"
+  },
+  {
+   "default": "0.800",
+   "depends_on": "eval:doc.bag_type == \"Domestic\"",
+   "fieldname": "bag_weight_domestic",
+   "fieldtype": "Float",
+   "label": "Bag Weight Domestic"
+  },
+  {
+   "default": "0.056",
+   "depends_on": "eval:doc.bag_type == \"International\"",
+   "fieldname": "bag_weight_international",
+   "fieldtype": "Float",
+   "label": "Bag Weight International"
+  },
+  {
+   "default": "0",
+   "depends_on": "eval:doc.bag_type == \"No bag\"",
+   "fieldname": "weight_without_bag",
+   "fieldtype": "Float",
+   "label": "Weight Without Bag"
+  },
+  {
+   "fieldname": "colw_column",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "no_of_bags",
+   "fieldtype": "Float",
+   "label": "No of Bags"
+  },
+  {
+   "default": "3",
+   "fieldname": "weight_less",
+   "fieldtype": "Float",
+   "label": "Weight Less"
+  },
+  {
+   "fieldname": "net_weight_kg",
+   "fieldtype": "Float",
+   "label": "Net Weight (Kg)"
+  },
+  {
+   "default": ".8",
+   "fieldname": "transport_rate",
+   "fieldtype": "Float",
+   "label": "Transport Rate"
   }
  ],
  "index_web_pages_for_search": 1,
- "is_submittable": 1,
  "links": [],
- "modified": "2022-12-08 15:07:32.345218",
+ "modified": "2022-12-08 17:12:45.317136",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
- "name": "Purchase Advice",
+ "name": "Sales Advises",
  "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
@@ -378,18 +366,6 @@
    "delete": 1,
    "email": 1,
    "export": 1,
-   "print": 1,
-   "read": 1,
-   "report": 1,
-   "role": "System Manager",
-   "share": 1,
-   "write": 1
-  },
-  {
-   "delete": 1,
-   "email": 1,
-   "export": 1,
-   "permlevel": 1,
    "print": 1,
    "read": 1,
    "report": 1,
