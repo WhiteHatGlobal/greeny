@@ -1,0 +1,157 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2022-12-10 09:40:36.206943",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "sale_advice",
+  "customer",
+  "column_break_4",
+  "date",
+  "status",
+  "loading_payment_table_section",
+  "loading_payment_table",
+  "section_break_10",
+  "total_loading_qty",
+  "column_break_12",
+  "total_loading_amount",
+  "section_break_14",
+  "paid",
+  "column_break_16",
+  "outstanding",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "options": "LP.MM.YY.####"
+  },
+  {
+   "fetch_from": "sale_advice.customer",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "purchase_advice.date",
+   "fieldname": "date",
+   "fieldtype": "Datetime",
+   "label": "Date"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Unpaid\nPartially Paid\nPaid"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Trasport Payment",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "loading_payment_table_section",
+   "fieldtype": "Section Break",
+   "label": "Loading Payment Table"
+  },
+  {
+   "fieldname": "loading_payment_table",
+   "fieldtype": "Table",
+   "options": "Loading Payment Table"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_loading_qty",
+   "fieldtype": "Float",
+   "label": "Total Loading Qty",
+   "precision": "0"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_loading_amount",
+   "fieldtype": "Currency",
+   "label": "Total Loading Amount"
+  },
+  {
+   "fieldname": "section_break_14",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "paid",
+   "fieldtype": "Currency",
+   "label": "Paid"
+  },
+  {
+   "fieldname": "column_break_16",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "outstanding",
+   "fieldtype": "Currency",
+   "label": "Outstanding"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Trasport Payment",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "sale_advice",
+   "fieldtype": "Link",
+   "label": "Sale Advice",
+   "options": "Sale Advice"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2022-12-10 09:50:20.549759",
+ "modified_by": "Administrator",
+ "module": "Greeny Medows",
+ "name": "Trasport Payment",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

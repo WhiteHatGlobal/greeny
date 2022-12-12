@@ -124,7 +124,12 @@ doc_events = {
 	"Purchase Transport": {
 		"on_submit": "greeny.greeny_medows.dev_custom.purchase_sales.purchase_transport",
 		
+	},
+	"Purchase Invoice": {
+		"on_submit": "greeny.greeny_medows.dev_custom.purchase_invoice.landes_cost_voucher",
+		
 	}
+
 }
 
 # Scheduled Tasks

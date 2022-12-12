@@ -1,47 +1,48 @@
 import frappe
 
-@frappe.whitelist()
-def purchase_loading(name, date, supplier, coconant, trans_type, vehicle, driver):
-    frappe.errprint("vgh")    
-    doc=frappe.new_doc("Purchase Loading")
-    doc.update({
-        "purchase_invoice":name,
-        "date":date,
-        "supplier":supplier,
-        "coconut_qty":coconant
-    })
-    doc.save(ignore_permissions=True)
+
+# @frappe.whitelist()
+# def purchase_loading(name, date, supplier, coconant, trans_type, vehicle, driver):
+#     frappe.errprint("vgh")    
+#     doc=frappe.new_doc("Purchase Loading")
+#     doc.update({
+#         "purchase_invoice":name,
+#         "date":date,
+#         "supplier":supplier,
+#         "coconut_qty":coconant
+#     })
+#     doc.save(ignore_permissions=True)
     
-    return purchase_tranport(name,  trans_type, vehicle, driver, supplier)
+#     return purchase_tranport(name,  trans_type, vehicle, driver, supplier)
 
-def purchase_tranport(name, trans_type, vehicle, driver, supplier):
-    frappe.errprint("hvghhhhhh")
+# def purchase_tranport(name, trans_type, vehicle, driver, supplier):
+#     frappe.errprint("hvghhhhhh")
 
-    if(trans_type == "Own Vehicle"):
-        frappe.errprint("fdvgdf")
-        doc=frappe.new_doc("Purchase Transport")
-        doc.update({
-            "purchase_invoice":name,
-            "transport_type":trans_type,
-            "vehicle":vehicle,
-            "driver_whg":driver,
-        })
-        doc.save(ignore_permissions=True)
-        frappe.msgprint("Purchase Transport and Purchase Loading are Created Successfully")
+#     if(trans_type == "Own Vehicle"):
+#         frappe.errprint("fdvgdf")
+#         doc=frappe.new_doc("Purchase Transport")
+#         doc.update({
+#             "purchase_invoice":name,
+#             "transport_type":trans_type,
+#             "vehicle":vehicle,
+#             "driver_whg":driver,
+#         })
+#         doc.save(ignore_permissions=True)
+#         frappe.msgprint("Purchase Transport and Purchase Loading are Created Successfully")
        
-    else:
-        doc=frappe.new_doc("Purchase Transport")
-        doc.update({
-            "purchase_invoice":name,
-            "transport_type":trans_type,
-            "vehicle_number":vehicle,
-            "driver_whg":driver,
-            "transport_supplier": supplier,
-            # "bill_amount":rounded_total,
+#     else:
+#         doc=frappe.new_doc("Purchase Transport")
+#         doc.update({
+#             "purchase_invoice":name,
+#             "transport_type":trans_type,
+#             "vehicle_number":vehicle,
+#             "driver_whg":driver,
+#             "transport_supplier": supplier,
+#             # "bill_amount":rounded_total,
 
-        })
-        doc.save(ignore_permissions=True)
-        frappe.msgprint("Purchase Transport and Purchase Loading are Created Successfully")
+#         })
+#         doc.save(ignore_permissions=True)
+#         frappe.msgprint("Purchase Transport and Purchase Loading are Created Successfully")
 
 def purchase_transport(self, event):
 

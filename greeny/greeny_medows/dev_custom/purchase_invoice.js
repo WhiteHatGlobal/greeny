@@ -1,49 +1,49 @@
 
-frappe.ui.form.on('Purchase Invoice', {
+// frappe.ui.form.on('Purchase Invoice', {
 
-    on_submit: function(){
-        if(cur_frm.doc.transport_type=="Other Vehicle"){
-        frappe.call({
-			method:"greeny.greeny_medows.dev_custom.purchase_sales.purchase_loading",
-			args: {
+    // on_submit: function(){
+    //     if(cur_frm.doc.transport_type=="Other Vehicle"){
+    //     frappe.call({
+	// 		method:"greeny.greeny_medows.dev_custom.purchase_sales.purchase_loading",
+	// 		args: {
                 
-                "name":cur_frm.doc.name,
-                "date":cur_frm.doc.due_date,
-                "supplier":cur_frm.doc.supplier,
-                "coconant":cur_frm.doc.number_of_coconant,
-                "trans_type":cur_frm.doc.transport_type,
-                "vehicle":cur_frm.doc.vehicle_number,
-                "driver":cur_frm.doc.driver_name,
-            },
-            callback(r){
-				console.log("fdgdg")
-			}
-		})
-    }
-    if(cur_frm.doc.transport_type=="Own Vehicle"){
-        frappe.call({
-			method:"greeny.greeny_medows.dev_custom.purchase_sales.purchase_loading",
-			args: {
+    //             "name":cur_frm.doc.name,
+    //             "date":cur_frm.doc.due_date,
+    //             "supplier":cur_frm.doc.supplier,
+    //             "coconant":cur_frm.doc.number_of_coconant,
+    //             "trans_type":cur_frm.doc.transport_type,
+    //             "vehicle":cur_frm.doc.vehicle_number,
+    //             "driver":cur_frm.doc.driver_name,
+    //         },
+    //         callback(r){
+	// 			console.log("fdgdg")
+	// 		}
+	// 	})
+    // }
+    // if(cur_frm.doc.transport_type=="Own Vehicle"){
+    //     frappe.call({
+	// 		method:"greeny.greeny_medows.dev_custom.purchase_sales.purchase_loading",
+	// 		args: {
                 
-                "name":cur_frm.doc.name,
-                "date":cur_frm.doc.due_date,
-                "supplier":cur_frm.doc.supplier,
-                "coconant":cur_frm.doc.number_of_coconant,
-                "trans_type":cur_frm.doc.transport_type,
-                "vehicle":cur_frm.doc.vehicle,
-                "driver":cur_frm.doc.driver_name,
-            },
-            callback(r){
-				console.log("fdgdg")
-			}
-		})
-    }
-}
+    //             "name":cur_frm.doc.name,
+    //             "date":cur_frm.doc.due_date,
+    //             "supplier":cur_frm.doc.supplier,
+    //             "coconant":cur_frm.doc.number_of_coconant,
+    //             "trans_type":cur_frm.doc.transport_type,
+    //             "vehicle":cur_frm.doc.vehicle,
+    //             "driver":cur_frm.doc.driver_name,
+    //         },
+    //         callback(r){
+	// 			console.log("fdgdg")
+	// 		}
+	// 	})
+    // }
+// }
 
 
 
 
-})
+// })
 function set_uom(frm,cdt,cdn){
 	let row=locals[cdt][cdn];
 	if(row.item_code){
@@ -78,11 +78,6 @@ function set_uom(frm,cdt,cdn){
             frappe.model.set_value(cdt, cdn, "qty2", cur_frm.doc.number_of_coconant);
         }
 
-        // let co_count = cur_frm.doc.gross_weight_whg-(cur_frm.doc.no_of_bags*cur_frm.doc.bag_weight_domestic)
-
-        // let net_weight = co_count -((co_count/100)*3)
-        // frappe.model.set_value(cdt, cdn, "qty", net_weight);
-        // frappe.model.set_value(cdt, cdn, "qty2", cur_frm.doc.number_of_coconant);
         
 }
 }
@@ -93,30 +88,3 @@ frappe.ui.form.on('Purchase Invoice Item', {
 
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-// frappe.ui.form.on('My Custom Settings', {
-
-//     onload: function() {
-    
-//             frappe.model.with_doctype('Purchase Invoice', () => {
-//             const meta = frappe.get_meta('Purchase Invoice');
-    
-//             const naming_series = meta.fields.find(df => df.fieldname === 'naming_series');
-    
-//             frm.set_df_property('my_custom_settings_selectio_field', 'options', naming_series.options);
-//         });
-    
-//     },
-    
-//     });

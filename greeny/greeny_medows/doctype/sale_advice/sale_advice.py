@@ -4,7 +4,7 @@
 import frappe
 from frappe.model.document import Document
 
-class PurchaseAdvice(Document):
+class SaleAdvice(Document):
 	def on_submit(self):
 		if (self.transport_type == "Own Vehicle"):
 			if(self.expense_details):
@@ -56,7 +56,7 @@ class PurchaseAdvice(Document):
 			if(self.others_loading):
 
 				table2=self.others_loading
-				doc2=frappe.new_doc("Loading Payment")
+				doc2=frappe.new_doc("Trasport Payment")
 				item2=[]
 				for i in range(0,len(table2)):
 					item2.append({
@@ -68,64 +68,52 @@ class PurchaseAdvice(Document):
 				
 
 				doc2.update({
-						"purchase_advice_whg":self.name,
+						"sale_advice":self.name,
 						"date":self.date,
-						"supplier":self.supplier,
+						"customer":self.customer,
 						"loading_payment_table":item2,
 						"total_loading_qty":self.total_others,
 						"total_loading_amount":self.others_loading_amount
 					})
 				doc2.save(ignore_permissions=True)
-				frappe.msgprint("Loading Payment are Created Successfully")
+				frappe.msgprint("Transport Payment are Created Successfully")
 
 
-			doc=frappe.new_doc("Purchase Invoice")
+			doc=frappe.new_doc("Sales Invoice")
 			item=[{
                 "item_code":"Coconut",
 				"qty":self.qty
             }]
 			doc.update({
-                "supplier":self.supplier,
+                "customer":self.customer,
 				"number_of_coconant":self.qty,
 				"bag_type":self.bag_type,
 				"gross_weight_whg":self.weight,
 				"no_of_bags":self.no_of_bags,
-				"expence_detail_whg":self.expense_details,
                 "items":item,
-                "transport_type":self.transport_type,
-                "vehicle":self.vehicle,
-                "driver_name":self.driver_name
+                "transport_type_whg":self.transport_type,
+                "vehicle_whg2":self.vehicle,
             })
 			doc.save(ignore_permissions=True)
-			frappe.msgprint("Purchase Invoice are Created Successfully")
+			frappe.msgprint("Sales Invoice are Created Successfully")
 
 		if (self.transport_type == "Other Vehicle"):
-				doc1=frappe.new_doc("Purchase Invoice")
+				doc1=frappe.new_doc("Sales Invoice")
 				item=[{
-					"item_code":"Coconut",
-					"qty":self.qty
+					"item_code":"Transport Item",
+					"qty":1,
+					"rate":self.bill_amount
 				}]
 				doc1.update({
-					"supplier":self.supplier,
+					"customer":self.customer,
 					"number_of_coconant":self.qty,
 					"bag_type":self.bag_type,
 					"gross_weight_whg":self.weight,
 					"no_of_bags":self.no_of_bags,
 					"items":item,
-					"transport_type":self.transport_type,
-					"vehicle_number":self.vehicle_no,
-					"driver_name":self.driver_nme
+					"transport_type_whg":self.transport_type,
+					"vehicle_number_whg2":self.vehicle_no,
+					# "driver_name":self.driver_nme
 				})
 				doc1.save(ignore_permissions=True)
-				frappe.msgprint("Purchase Invoice are Created Successfully")
-
-
-@frappe.whitelist()
-def account_head(expence_type):
-
-	doc=frappe.get_doc('Expense Claim Type',expence_type)
-	accounts_table=doc.accounts
-	for i in range(0,len(accounts_table)):
-		account=accounts_table[i].get("default_account")
-	return account
-		
+				frappe.msgprint("Sales Invoice are Created Successfully")

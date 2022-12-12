@@ -365,8 +365,29 @@
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2022-12-08 15:07:32.345218",
+ "links": [
+  {
+   "group": "Expense Claim",
+   "link_doctype": "Expense Claim",
+   "link_fieldname": "employee"
+  },
+  {
+   "group": "Additional Salary",
+   "link_doctype": "Additional Salary",
+   "link_fieldname": "employee"
+  },
+  {
+   "group": "Loading Payment",
+   "link_doctype": "Loading Payment",
+   "link_fieldname": "status"
+  },
+  {
+   "group": "Purchase Invoice",
+   "link_doctype": "Purchase Invoice",
+   "link_fieldname": "supplier"
+  }
+ ],
+ "modified": "2022-12-12 12:17:56.564211",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
  "name": "Purchase Advice",

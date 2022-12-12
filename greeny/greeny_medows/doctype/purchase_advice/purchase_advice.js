@@ -40,6 +40,11 @@ frappe.ui.form.on('Purchase Advice', {
             cur_frm.set_value("total_km", total);
         }
 
+        if(cur_frm.doc.weight){
+            total=cur_frm.doc.weight * cur_frm.doc.transport_rate
+            cur_frm.set_value("transport_charges", total);
+        }
+
 	}
 
     if(cur_frm.doc.bag_type=="No bag"){
@@ -103,3 +108,34 @@ rate:function(frm,cdt,cdn){
     ot_amount(frm,cdt,cdn);
 },
 })
+
+
+
+
+
+
+
+function account_head(frm,cdt,cdn){
+	let row=locals[cdt][cdn];
+    console.log("vvvvvvv")
+    frappe.call({
+        method:"greeny.greeny_medows.doctype.purchase_advice.purchase_advice.account_head",
+        args: {
+            "expence_type":row.expense_claim_type
+        },
+        callback(r){
+            frappe.model.set_value(cdt, cdn, "account_head", r.message);
+        }
+    })
+    
+}
+
+
+frappe.ui.form.on('Expense Details', {
+    expense_claim_type:function(frm,cdt,cdn){
+    account_head(frm,cdt,cdn);
+},
+
+})
+
+

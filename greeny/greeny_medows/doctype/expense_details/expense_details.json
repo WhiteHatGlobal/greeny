@@ -8,6 +8,7 @@
  "field_order": [
   "date",
   "expense_claim_type",
+  "account_head",
   "amount",
   "remarks"
  ],
@@ -36,12 +37,20 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Date"
+  },
+  {
+   "fieldname": "account_head",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Account Head",
+   "options": "Account",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2022-12-07 09:19:50.042909",
+ "modified": "2022-12-10 14:42:11.624050",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
  "name": "Expense Details",

@@ -1,7 +1,7 @@
 // Copyright (c) 2022, White Hat Global and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on('Sales Advises', {
+frappe.ui.form.on('Sale Advice', {
 	validate: function(frm, cdt, cdn){
 		if(cur_frm.doc.transport_type=="Own Vehicle"){
 
@@ -41,10 +41,10 @@ frappe.ui.form.on('Sales Advises', {
             cur_frm.set_value("total_km", total);
         }
 
-		// if(cur_frm.doc.weight){
-        //     total=cur_frm.doc.weight * cur_frm.doc.transport_rate
-        //     cur_frm.set_value("transport_charges", total);
-        // }
+		if(cur_frm.doc.weight){
+            total=cur_frm.doc.weight * cur_frm.doc.transport_rate
+            cur_frm.set_value("transport_charges", total);
+        }
 
 	}
 
@@ -53,21 +53,19 @@ frappe.ui.form.on('Sales Advises', {
 
         let co_count = cur_frm.doc.weight-(cur_frm.doc.no_of_bags*cur_frm.doc.weight_without_bag)
         let net_weight = co_count -((co_count/100)*3)
-        cur_frm.set_value("net_weight_kg", net_weight);
+        cur_frm.set_value("net_weight", net_weight);
     }
     else if(cur_frm.doc.bag_type == "Domestic"){
-
         let co_count = cur_frm.doc.weight-(cur_frm.doc.no_of_bags*cur_frm.doc.bag_weight_domestic)
         let net_weight = co_count -((co_count/100)*3)
-        cur_frm.set_value("net_weight_kg", net_weight);
+        cur_frm.set_value("net_weight", net_weight);
       
     }
      else {
         
-
         let co_count = cur_frm.doc.weight-(cur_frm.doc.no_of_bags*cur_frm.doc.bag_weight_international)
         let net_weight = co_count -((co_count/100)*3)
-        cur_frm.set_value("net_weight_kg", net_weight);
+        cur_frm.set_value("net_weight", net_weight);
        
     }
 
