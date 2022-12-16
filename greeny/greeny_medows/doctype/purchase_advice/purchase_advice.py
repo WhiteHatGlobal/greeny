@@ -65,6 +65,7 @@ class PurchaseAdvice(Document):
 						"rate":table2[i].get("rate"),
 						"amount":table2[i].get("amount"),
 					})
+				frappe.errprint(item2)
 				
 
 				doc2.update({
@@ -102,8 +103,9 @@ class PurchaseAdvice(Document):
 		if (self.transport_type == "Other Vehicle"):
 				doc1=frappe.new_doc("Purchase Invoice")
 				item=[{
-					"item_code":"Coconut",
-					"qty":self.qty
+					"item_code":"Transport Item",
+					"qty":1,
+					"rate":self.bill_amount
 				}]
 				doc1.update({
 					"supplier":self.supplier,
