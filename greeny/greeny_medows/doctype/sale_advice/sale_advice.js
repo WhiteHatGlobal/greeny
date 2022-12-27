@@ -19,6 +19,10 @@ frappe.ui.form.on('Sale Advice', {
         var total = 0;
         total=cur_frm.doc.total_greeny + cur_frm.doc.total_others
         cur_frm.set_value("total_loading_qty", total);
+        
+        if(cur_frm.doc.qty != cur_frm.doc.total_loading_qty) {
+            frappe.throw(__("Total Qty is not matched to Loaded Qty"))
+        }
 
         var lo_amount = 0;
         frm.doc.loading_details_table.forEach(function (d) { lo_amount += d.amount; });
@@ -39,6 +43,9 @@ frappe.ui.form.on('Sale Advice', {
         if(cur_frm.doc.ending_km){
             total=cur_frm.doc.ending_km - cur_frm.doc.starting_km
             cur_frm.set_value("total_km", total);
+            if(cur_frm.doc.total_km <= 0){
+                frappe.throw(__('Enetr Valid Starting & Ending KM'))
+            }
         }
 
 		if(cur_frm.doc.weight){
