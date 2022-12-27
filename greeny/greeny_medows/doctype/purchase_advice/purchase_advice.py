@@ -54,7 +54,7 @@ class PurchaseAdvice(Document):
 							"amount":table1[i].get("amount")
 						})
 						doc1.save(ignore_permissions=True)
-					frappe.msgprint("Additional Salaryare Created Successfully")
+					frappe.msgprint("Additional Salary Created Successfully")
 
 			
 			if(self.others_loading):
@@ -87,7 +87,7 @@ class PurchaseAdvice(Document):
 			doc=frappe.new_doc("Purchase Invoice")
 			item=[{
                 "item_code":"Coconut",
-				"qty":self.qty
+				"qty":self.net_weight
             }]
 			doc.update({
                 "supplier":self.supplier,
@@ -97,6 +97,7 @@ class PurchaseAdvice(Document):
 				"no_of_bags":self.no_of_bags,
 				"expence_detail_whg":self.expense_details,
                 "items":item,
+		"purchase_advice":self.name,
                 "transport_type":self.transport_type,
                 "vehicle":self.vehicle,
                 "driver_name":self.driver_name

@@ -379,15 +379,15 @@
   {
    "group": "Loading Payment",
    "link_doctype": "Loading Payment",
-   "link_fieldname": "status"
+   "link_fieldname": "purchase_advice"
   },
   {
    "group": "Purchase Invoice",
    "link_doctype": "Purchase Invoice",
-   "link_fieldname": "supplier"
+   "link_fieldname": "purchase_advice"
   }
  ],
- "modified": "2022-12-27 21:11:02.587722",
+ "modified": "2022-12-27 21:42:21.826337",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
  "name": "Purchase Advice",
