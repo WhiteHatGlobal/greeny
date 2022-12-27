@@ -57,7 +57,7 @@ function set_uom(frm,cdt,cdn){
             let co_count = cur_frm.doc.gross_weight_whg-(cur_frm.doc.no_of_bags*cur_frm.doc.weight_without_bag)
             let net_weight = co_count -((co_count/100)*3)
             cur_frm.set_value("net_weight", net_weight);
-            frappe.model.set_value(cdt, cdn, "qty", net_weight);
+            frappe.model.set_value(cdt, cdn, "qty", cur_frm.doc.gross_weight_whg);
             frappe.model.set_value(cdt, cdn, "qty2", cur_frm.doc.number_of_coconant);
         }
         else if(cur_frm.doc.bag_type == "Domestic"){
@@ -65,7 +65,7 @@ function set_uom(frm,cdt,cdn){
             let co_count = cur_frm.doc.gross_weight_whg-(cur_frm.doc.no_of_bags*cur_frm.doc.bag_weight_domestic)
             let net_weight = co_count -((co_count/100)*3)
             cur_frm.set_value("net_weight", net_weight);
-            frappe.model.set_value(cdt, cdn, "qty", net_weight);
+            frappe.model.set_value(cdt, cdn, "qty", cur_frm.doc.gross_weight_whg);
             frappe.model.set_value(cdt, cdn, "qty2", cur_frm.doc.number_of_coconant);
         }
          else {
@@ -74,7 +74,7 @@ function set_uom(frm,cdt,cdn){
             let co_count = cur_frm.doc.gross_weight_whg-(cur_frm.doc.no_of_bags*cur_frm.doc.bag_weight_international)
             let net_weight = co_count -((co_count/100)*3)
             cur_frm.set_value("net_weight", net_weight);
-            frappe.model.set_value(cdt, cdn, "qty", net_weight);
+            frappe.model.set_value(cdt, cdn, "qty", cur_frm.doc.gross_weight_whg);
             frappe.model.set_value(cdt, cdn, "qty2", cur_frm.doc.number_of_coconant);
         }
 
