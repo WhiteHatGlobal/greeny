@@ -6,8 +6,9 @@ from frappe.model.document import Document
 
 class PurchaseAdvice(Document):
 	def before_submit(self):
-		if(self.qty!=self.total_loading_qty):
-			frappe.throw("Total Quantity and Loading Quantity are mismatch")
+		if (self.transport_type == "Own Vehicle"):
+			if(self.qty!=self.total_loading_qty):
+				frappe.throw("Total Quantity and Loading Quantity are mismatch")
 
 	def on_submit(self):
 		if (self.transport_type == "Own Vehicle"):
