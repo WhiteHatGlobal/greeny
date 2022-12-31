@@ -50,7 +50,7 @@ class PurchaseAdvice(Document):
 						"purchase_advice":self.name,
 						"approval_status":"Approved",
 						"expenses":item,
-						"payable_account":"Creditors - WHG"
+						"payable_account":self.payable_account
 					})
 				doc.save(ignore_permissions=True)
 				frappe.msgprint("Expense are Created Successfully")

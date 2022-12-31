@@ -29,7 +29,6 @@
   "net_weight",
   "transport_rate",
   "transport_details_section",
-  "items",
   "transport_type",
   "own_vehicle_section",
   "vehicle",
@@ -41,6 +40,7 @@
   "ending_km",
   "total_km",
   "other_vehicle_section",
+  "items",
   "vehicle_no",
   "driver_name_w",
   "transport_supplier",
@@ -59,7 +59,8 @@
   "total_loading_amount",
   "amended_from",
   "expense_details_section",
-  "expense_details"
+  "expense_details",
+  "payable_account"
  ],
  "fields": [
   {
@@ -383,6 +384,13 @@
    "fieldtype": "Link",
    "label": "Transport Item",
    "options": "Item"
+  },
+  {
+   "default": "Creditors - GM",
+   "fieldname": "payable_account",
+   "fieldtype": "Data",
+   "label": "Payable Account",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
@@ -409,7 +417,7 @@
    "link_fieldname": "purchase_advice"
   }
  ],
- "modified": "2022-12-31 23:31:36.273356",
+ "modified": "2023-01-01 01:10:07.581077",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
  "name": "Purchase Advice",
@@ -443,5 +451,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }

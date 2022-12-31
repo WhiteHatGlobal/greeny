@@ -419,7 +419,7 @@
    "link_fieldname": "sale_advice"
   }
  ],
- "modified": "2022-12-31 23:34:29.228226",
+ "modified": "2023-01-01 01:02:33.741268",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
  "name": "Sale Advice",
@@ -453,5 +453,6 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }

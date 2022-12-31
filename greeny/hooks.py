@@ -212,5 +212,4 @@ fixtures = [
 	 "Property Setter",
 	 "Letter Head",
 	 "Print Format",
-	 "Custom Field"
 ]
