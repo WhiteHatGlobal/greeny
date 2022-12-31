@@ -12,6 +12,20 @@ class PurchaseAdvice(Document):
 
 	def on_submit(self):
 		if (self.transport_type == "Own Vehicle"):
+     
+	 # Attendance Creation
+
+			if(self.driver):
+				doc=frappe.new_doc("Attendance")
+				doc.update({
+					"employee":self.driver,
+					"attendance_date":self.date
+				})
+				doc.save(ignore_permissions=True)
+				frappe.msgprint("Attendance Created For Driver")
+
+	 # Expense Claim Creation
+
 			if(self.expense_details):
 
 				table=self.expense_details
@@ -33,7 +47,7 @@ class PurchaseAdvice(Document):
 
 				doc.update({
 						"employee":self.driver,
-						"expense_approver":'rk@whg.org',
+						"purchase_advice":self.name,
 						"approval_status":"Approved",
 						"expenses":item,
 						"payable_account":"Creditors - WHG"
@@ -41,6 +55,7 @@ class PurchaseAdvice(Document):
 				doc.save(ignore_permissions=True)
 				frappe.msgprint("Expense are Created Successfully")
 
+	 # Additional Salary Creation
 
 			if(self.loading_details_table):
 
@@ -50,6 +65,7 @@ class PurchaseAdvice(Document):
             
 						doc1.update({
 							"employee":table1[i].get("employee"),
+       						"purchase_advice":self.name,
 							"salary_component":"Loading Salary",
 							"payroll_date":table1[i].get("date"),
 							"amount":table1[i].get("amount")
@@ -57,7 +73,8 @@ class PurchaseAdvice(Document):
 						doc1.save(ignore_permissions=True)
 					frappe.msgprint("Additional Salary Created Successfully")
 
-			
+ # Loading Payment Creation
+
 			if(self.others_loading):
 
 				table2=self.others_loading
@@ -74,7 +91,7 @@ class PurchaseAdvice(Document):
 				
 
 				doc2.update({
-						"purchase_advice_whg":self.name,
+						"purchase_advice":self.name,
 						"date":self.date,
 						"supplier":self.supplier,
 						"loading_payment_table":item2,
@@ -84,48 +101,106 @@ class PurchaseAdvice(Document):
 				doc2.save(ignore_permissions=True)
 				frappe.msgprint("Loading Payment are Created Successfully")
 
+# Purchase Invoice Creation
 
-			doc=frappe.new_doc("Purchase Invoice")
-			item=[{
-                "item_code":"Coconut",
-				"qty":self.net_weight
-            }]
-			doc.update({
-                "supplier":self.supplier,
-				"number_of_coconant":self.qty,
-				"bag_type":self.bag_type,
-				"gross_weight_whg":self.weight,
-				"no_of_bags":self.no_of_bags,
-				"expence_detail_whg":self.expense_details,
-                "items":item,
-		"purchase_advice":self.name,
-                "transport_type":self.transport_type,
-                "vehicle":self.vehicle,
-                "driver_name":self.driver_name
-            })
-			doc.save(ignore_permissions=True)
-			frappe.msgprint("Purchase Invoice are Created Successfully")
+				if(self.expense_details):
+					doc=frappe.new_doc("Purchase Invoice")
+					tab=self.expense_details
+					expence=[{
+						"date":tab[i].get("date"),
+						"expense_claim_type":tab[i].get("expense_claim_type"),
+						"account_head":tab[i].get("account_head"),
+						"amount":tab[i].get("amount"),
+						"remarks":tab[i].get("remarks")
+					}]
+					frappe.errprint(expence)
+					item=[{
+						"item_code":self.item,
+						"qty":self.net_weight
+					}]
+					doc.update({
+						"supplier":self.supplier,
+						"number_of_coconant":self.qty,
+						"bag_type":self.bag_type,
+						"gross_weight_whg":self.weight,
+						"no_of_bags":self.no_of_bags,
+						"expence_detail_whg":self.expense_details,
+						"items":item,
+						"purchase_advice":self.name,
+						"transport_type":self.transport_type,
+						"vehicle":self.vehicle,
+						"driver_name":self.driver_name,
+						"expence_detail_whg":expence
+					})
+					doc.save(ignore_permissions=True)
+					frappe.msgprint("Purchase Invoice are Created Successfully")
+				else:
+					doc=frappe.new_doc("Purchase Invoice")
+					item=[{
+						"item_code":self.item,
+						"qty":self.net_weight
+					}]
+					doc.update({
+						"supplier":self.supplier,
+						"number_of_coconant":self.qty,
+						"bag_type":self.bag_type,
+						"gross_weight_whg":self.weight,
+						"no_of_bags":self.no_of_bags,
+						"expence_detail_whg":self.expense_details,
+						"items":item,
+						"purchase_advice":self.name,
+						"transport_type":self.transport_type,
+						"vehicle":self.vehicle,
+						"driver_name":self.driver_name
+					})
+					doc.save(ignore_permissions=True)
+					frappe.msgprint("Purchase Invoice are Created Successfully")
+
+# Purchase Invoice Creation for Other Vehicle (Item and Transport)
 
 		if (self.transport_type == "Other Vehicle"):
 				doc1=frappe.new_doc("Purchase Invoice")
-				item=[{
-					"item_code":"Transport Item",
-					"qty":1,
-					"rate":self.bill_amount
+				item1=[{
+					"item_code":self.item,
+					"qty":self.net_weight,
 				}]
 				doc1.update({
 					"supplier":self.supplier,
+     				"purchase_advice":self.name,
 					"number_of_coconant":self.qty,
 					"bag_type":self.bag_type,
 					"gross_weight_whg":self.weight,
 					"no_of_bags":self.no_of_bags,
-					"items":item,
+					"items":item1,
 					"transport_type":self.transport_type,
 					"vehicle_number":self.vehicle_no,
 					"driver_name":self.driver_nme
 				})
 				doc1.save(ignore_permissions=True)
 				frappe.msgprint("Purchase Invoice are Created Successfully")
+
+            # Purchase Invoice For Transport
+				item2=[{
+						"item_code":self.items,
+						"qty":1,
+						"rate":self.bill_amount
+					}]
+
+				doc1=frappe.new_doc("Purchase Invoice")
+				doc1.update({
+					"supplier":self.transport_supplier,
+     				"purchase_advice":self.name,
+					"number_of_coconant":self.qty,
+					"bag_type":self.bag_type,
+					"gross_weight_whg":self.weight,
+					"no_of_bags":self.no_of_bags,
+					"items":item2,
+					"transport_type":self.transport_type,
+					"vehicle_number":self.vehicle_no,
+					"driver_name":self.driver_nme
+				})
+				doc1.save(ignore_permissions=True)
+				frappe.msgprint("Purchase Invoice are Created Against Transport")
 
 
 @frappe.whitelist()

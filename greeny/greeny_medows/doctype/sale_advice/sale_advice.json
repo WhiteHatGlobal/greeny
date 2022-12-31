@@ -369,25 +369,25 @@
   {
    "group": "Expense Claim",
    "link_doctype": "Expense Claim",
-   "link_fieldname": "employee"
+   "link_fieldname": "sale_advice"
   },
   {
    "group": "Additional Salary",
    "link_doctype": "Additional Salary",
-   "link_fieldname": "employee"
+   "link_fieldname": "sale_advice"
   },
   {
    "group": "Trasport Payment",
    "link_doctype": "Trasport Payment",
-   "link_fieldname": "status"
+   "link_fieldname": "sale_advice"
   },
   {
    "group": "Sales Invoice",
    "link_doctype": "Sales Invoice",
-   "link_fieldname": "customer"
+   "link_fieldname": "sale_advice"
   }
  ],
- "modified": "2022-12-12 12:23:51.178268",
+ "modified": "2022-12-29 19:12:48.589467",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
  "name": "Sale Advice",

@@ -27,8 +27,7 @@
   "others_loading_amount",
   "column_break_17",
   "total_loading_qty",
-  "total_loading_amount",
-  "amended_from"
+  "total_loading_amount"
  ],
  "fields": [
   {
@@ -44,6 +43,7 @@
   {
    "fieldname": "sales_invoice",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Sales Invoice",
    "options": "Sales Invoice"
   },
@@ -139,30 +139,12 @@
    "fieldname": "total_loading_amount",
    "fieldtype": "Currency",
    "label": "Total Loading Amount"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Sales Loading",
-   "print_hide": 1,
-   "read_only": 1
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Sales Loading",
-   "print_hide": 1,
-   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-12-01 21:23:00.147380",
+ "modified": "2022-12-31 17:27:36.675551",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
  "name": "Sales Loading",

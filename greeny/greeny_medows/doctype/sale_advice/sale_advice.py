@@ -5,6 +5,11 @@ import frappe
 from frappe.model.document import Document
 
 class SaleAdvice(Document):
+
+	def before_submit(self):
+		if (self.transport_type == "Own Vehicle"):
+			if(self.qty!=self.total_loading_qty):
+				frappe.throw("Total Quantity and Loading Quantity are mismatch")
 	def on_submit(self):
 		if (self.transport_type == "Own Vehicle"):
 			if(self.expense_details):
@@ -28,7 +33,7 @@ class SaleAdvice(Document):
 
 				doc.update({
 						"employee":self.driver,
-						"expense_approver":'rk@whg.org',
+						"sale_advice":self.name,
 						"approval_status":"Approved",
 						"expenses":item,
 						"payable_account":"Creditors - WHG"
@@ -45,12 +50,13 @@ class SaleAdvice(Document):
             
 						doc1.update({
 							"employee":table1[i].get("employee"),
+							"sale_advice":self.name,
 							"salary_component":"Loading Salary",
 							"payroll_date":table1[i].get("date"),
 							"amount":table1[i].get("amount")
 						})
 						doc1.save(ignore_permissions=True)
-					frappe.msgprint("Additional Salaryare Created Successfully")
+					frappe.msgprint("Additional Salary are Created Successfully")
 
 			
 			if(self.others_loading):
@@ -86,6 +92,7 @@ class SaleAdvice(Document):
             }]
 			doc.update({
                 "customer":self.customer,
+                "sale_advice":self.name,
 				"number_of_coconant":self.qty,
 				"bag_type":self.bag_type,
 				"gross_weight_whg":self.weight,
@@ -106,6 +113,7 @@ class SaleAdvice(Document):
 				}]
 				doc1.update({
 					"customer":self.customer,
+     				"sale_advice":self.name,
 					"number_of_coconant":self.qty,
 					"bag_type":self.bag_type,
 					"gross_weight_whg":self.weight,
@@ -117,3 +125,13 @@ class SaleAdvice(Document):
 				})
 				doc1.save(ignore_permissions=True)
 				frappe.msgprint("Sales Invoice are Created Successfully")
+
+@frappe.whitelist()
+def account_head(expence_type):
+
+	doc=frappe.get_doc('Expense Claim Type',expence_type)
+	accounts_table=doc.accounts
+	for i in range(0,len(accounts_table)):
+		account=accounts_table[i].get("default_account")
+	return account
+		

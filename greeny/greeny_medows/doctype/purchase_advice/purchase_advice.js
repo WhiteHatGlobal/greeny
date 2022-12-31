@@ -59,8 +59,14 @@ frappe.ui.form.on('Purchase Advice', {
             total=cur_frm.doc.weight * cur_frm.doc.transport_rate
             cur_frm.set_value("transport_charges", total);
         }
+        
+        
 
 	}
+
+    if (frm.doc.date > get_today()) {
+        frappe.throw(__("Please select a Date from the present or previous date."));
+    } 
 
     if(cur_frm.doc.bag_type=="No bag"){
            
@@ -96,14 +102,29 @@ function amount(frm,cdt,cdn){
             frappe.model.set_value(cdt, cdn, "amount", tot_amount);
     
 }
+function add_date(frm,cdt,cdn){
+    let row = locals[cdt][cdn];
+    frappe.model.set_value(cdt, cdn, "date", frm.doc.date);
+}
+
 
 frappe.ui.form.on('Loading Details', {
     qty:function(frm,cdt,cdn){
     amount(frm,cdt,cdn);
 },
+date:function(frm,cdt,cdn){
+    let row = locals[cdt][cdn];
+    if (row.date > get_today()) {
+        frappe.throw(__("Please select a Date from Loading Details table ,present or previous date."));
+    } 
+},
 rate:function(frm,cdt,cdn){
     amount(frm,cdt,cdn);
 },
+loading_details_table_add:function(frm,cdt,cdn){
+    add_date(frm,cdt,cdn);
+}
+
 })
 
 
@@ -113,20 +134,28 @@ function ot_amount(frm,cdt,cdn){
             frappe.model.set_value(cdt, cdn, "amount", tot_amount);
     
 }
-
+function ad_date(frm,cdt,cdn){
+    let row = locals[cdt][cdn];
+    frappe.model.set_value(cdt, cdn, "date", frm.doc.date);
+}
 
 frappe.ui.form.on('Loading Others', {
     qty:function(frm,cdt,cdn){
     ot_amount(frm,cdt,cdn);
 },
+date:function(frm,cdt,cdn){
+    let row = locals[cdt][cdn];
+    if (row.date > get_today()) {
+        frappe.throw(__("Please select a Date from Loading Others table ,present or previous date."));
+    } 
+},
 rate:function(frm,cdt,cdn){
     ot_amount(frm,cdt,cdn);
 },
-})
-
-
-
-
+others_loading_add:function(frm,cdt,cdn){
+    ad_date(frm,cdt,cdn);
+}
+});
 
 
 
@@ -145,11 +174,28 @@ function account_head(frm,cdt,cdn){
     
 }
 
+function adding_date(frm,cdt,cdn){
+    let row = locals[cdt][cdn];
+    frappe.model.set_value(cdt, cdn, "date", frm.doc.date);
+}
+
+
+
 
 frappe.ui.form.on('Expense Details', {
     expense_claim_type:function(frm,cdt,cdn){
     account_head(frm,cdt,cdn);
 },
+date:function(frm,cdt,cdn){
+    let row = locals[cdt][cdn];
+    if (row.date > get_today()) {
+        frappe.throw(__("Please select a Date from Expense Details table ,present or previous date."));
+    } 
+},
+expense_details_add:function(frm,cdt,cdn){
+    adding_date(frm,cdt,cdn);
+}
+
 
 })
 
