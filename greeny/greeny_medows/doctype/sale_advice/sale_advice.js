@@ -53,6 +53,12 @@ frappe.ui.form.on('Sale Advice', {
         }
 
 	}
+    if(cur_frm.doc.transport_type=="Other Vehicle"){
+        if(cur_frm.doc.weight){
+            total=cur_frm.doc.weight * cur_frm.doc.transport_rate
+            cur_frm.set_value("bill_amount", total);
+        }
+    }
 
     if(cur_frm.doc.bag_type=="No bag"){
            

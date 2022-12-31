@@ -14,6 +14,7 @@
   "column_break_4",
   "date",
   "section_break_6",
+  "item",
   "qty",
   "column_break_8",
   "weight",
@@ -44,6 +45,8 @@
   "transport_customer",
   "bill_amount",
   "loading_details_section",
+  "create_sales_loading",
+  "select_sales_loading",
   "loading_details_table",
   "others_loading",
   "section_break_29",
@@ -97,8 +100,10 @@
   {
    "fieldname": "qty",
    "fieldtype": "Float",
+   "in_list_view": 1,
    "label": "Coconut Qty (Nos)",
-   "precision": "0"
+   "precision": "0",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_8",
@@ -107,8 +112,10 @@
   {
    "fieldname": "weight",
    "fieldtype": "Float",
+   "in_list_view": 1,
    "label": "Coconut Weight (Kgs)",
-   "precision": "0"
+   "precision": "0",
+   "reqd": 1
   },
   {
    "fieldname": "section_break_9",
@@ -118,9 +125,11 @@
   {
    "fieldname": "bag_type",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Bag Type",
    "options": "\nNo bag\nDomestic\nInternational",
-   "permlevel": 1
+   "permlevel": 1,
+   "reqd": 1
   },
   {
    "default": "0.800",
@@ -187,7 +196,8 @@
    "fieldname": "transport_type",
    "fieldtype": "Select",
    "label": "Transport Type",
-   "options": "\nOwn Vehicle\nOther Vehicle"
+   "options": "\nOwn Vehicle\nOther Vehicle",
+   "reqd": 1
   },
   {
    "depends_on": "eval:doc.transport_type == \"Own Vehicle\"",
@@ -361,6 +371,28 @@
    "fieldtype": "Link",
    "label": "Customer",
    "options": "Customer"
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "select_sales_loading",
+   "fieldtype": "Link",
+   "label": "Select Sales Loading",
+   "mandatory_depends_on": "eval:doc.create_sales_loading == \"0\"",
+   "options": "Sales Loading",
+   "read_only_depends_on": "eval:doc.create_sales_loading == \"1\""
+  },
+  {
+   "default": "0",
+   "fieldname": "create_sales_loading",
+   "fieldtype": "Check",
+   "label": "Create Sales Loading"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -387,7 +419,7 @@
    "link_fieldname": "sale_advice"
   }
  ],
- "modified": "2022-12-29 19:12:48.589467",
+ "modified": "2022-12-31 23:34:29.228226",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
  "name": "Sale Advice",

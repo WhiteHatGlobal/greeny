@@ -116,10 +116,13 @@ class PurchaseAdvice(Document):
 					frappe.errprint(expence)
 					item=[{
 						"item_code":self.item,
-						"qty":self.net_weight
+						"qty":self.net_weight,
+						"qty2":self.qty
 					}]
 					doc.update({
 						"supplier":self.supplier,
+						"set_posting_time": "1",
+						"posting_date":self.date,
 						"number_of_coconant":self.qty,
 						"bag_type":self.bag_type,
 						"gross_weight_whg":self.weight,
@@ -138,10 +141,13 @@ class PurchaseAdvice(Document):
 					doc=frappe.new_doc("Purchase Invoice")
 					item=[{
 						"item_code":self.item,
-						"qty":self.net_weight
+						"qty":self.net_weight,
+						"qty2":self.qty
 					}]
 					doc.update({
 						"supplier":self.supplier,
+						"set_posting_time": "1",
+						"posting_date":self.date,
 						"number_of_coconant":self.qty,
 						"bag_type":self.bag_type,
 						"gross_weight_whg":self.weight,
@@ -163,10 +169,13 @@ class PurchaseAdvice(Document):
 				item1=[{
 					"item_code":self.item,
 					"qty":self.net_weight,
+					"qty2":self.qty
 				}]
 				doc1.update({
 					"supplier":self.supplier,
-     				"purchase_advice":self.name,
+					"set_posting_time": "1",
+					"posting_date":self.date,
+     					"purchase_advice":self.name,
 					"number_of_coconant":self.qty,
 					"bag_type":self.bag_type,
 					"gross_weight_whg":self.weight,
@@ -189,7 +198,9 @@ class PurchaseAdvice(Document):
 				doc1=frappe.new_doc("Purchase Invoice")
 				doc1.update({
 					"supplier":self.transport_supplier,
-     				"purchase_advice":self.name,
+					"set_posting_time": "1",
+					"posting_date":self.date,
+     					"purchase_advice":self.name,
 					"number_of_coconant":self.qty,
 					"bag_type":self.bag_type,
 					"gross_weight_whg":self.weight,

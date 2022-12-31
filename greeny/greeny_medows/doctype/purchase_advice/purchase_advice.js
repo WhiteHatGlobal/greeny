@@ -59,10 +59,13 @@ frappe.ui.form.on('Purchase Advice', {
             total=cur_frm.doc.weight * cur_frm.doc.transport_rate
             cur_frm.set_value("transport_charges", total);
         }
-        
-        
-
 	}
+    if(cur_frm.doc.transport_type=="Other Vehicle"){
+        if(cur_frm.doc.weight){
+            total=cur_frm.doc.weight * cur_frm.doc.transport_rate
+            cur_frm.set_value("bill_amount", total);
+        }
+    }
 
     if (frm.doc.date > get_today()) {
         frappe.throw(__("Please select a Date from the present or previous date."));

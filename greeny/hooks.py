@@ -208,7 +208,9 @@ doc_events = {
 #	"greeny.auth.validate"
 # ]
 fixtures = [
-	 "Custom Field",
 	 "Client Script",
-	 "Property Setter"
+	 "Property Setter",
+	 "Letter Head",
+	 "Print Format",
+	 "Custom Field"
 ]

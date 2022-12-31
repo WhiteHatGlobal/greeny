@@ -87,8 +87,9 @@ class SaleAdvice(Document):
 
 			doc=frappe.new_doc("Sales Invoice")
 			item=[{
-                "item_code":"Coconut",
-				"qty":self.net_weight
+                		"item_code":self.item,
+				"qty":self.net_weight,
+				"qty2":self.qty
             }]
 			doc.update({
                 "customer":self.customer,

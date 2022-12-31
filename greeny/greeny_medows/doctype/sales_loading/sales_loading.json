@@ -10,11 +10,8 @@
  "field_order": [
   "naming_series",
   "section_break_3",
-  "sales_invoice",
-  "customer",
   "column_break_7",
   "date",
-  "coconut_qty",
   "loading_details_section",
   "loading_details_table",
   "loading_by_others_section",
@@ -27,7 +24,8 @@
   "others_loading_amount",
   "column_break_17",
   "total_loading_qty",
-  "total_loading_amount"
+  "total_loading_amount",
+  "amended_from"
  ],
  "fields": [
   {
@@ -41,21 +39,6 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "sales_invoice",
-   "fieldtype": "Link",
-   "hidden": 1,
-   "label": "Sales Invoice",
-   "options": "Sales Invoice"
-  },
-  {
-   "fetch_from": "purchase_invoice.supplier",
-   "fieldname": "customer",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Customer",
-   "options": "Customer"
-  },
-  {
    "fieldname": "column_break_7",
    "fieldtype": "Column Break"
   },
@@ -64,15 +47,7 @@
    "fieldname": "date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "Date"
-  },
-  {
-   "bold": 1,
-   "fetch_from": "purchase_invoice.number_of_coconant",
-   "fieldname": "coconut_qty",
-   "fieldtype": "Data",
-   "in_list_view": 1,
-   "label": "Coconut Qty"
+   "label": "Created Date"
   },
   {
    "fieldname": "loading_details_section",
@@ -82,7 +57,7 @@
   {
    "fieldname": "loading_details_table",
    "fieldtype": "Table",
-   "options": "Loading Details"
+   "options": "Sales Loading Details"
   },
   {
    "fieldname": "loading_by_others_section",
@@ -92,7 +67,7 @@
   {
    "fieldname": "others_loading",
    "fieldtype": "Table",
-   "options": "Loading Others"
+   "options": "Sales Loading Others"
   },
   {
    "fieldname": "section_break_13",
@@ -139,12 +114,21 @@
    "fieldname": "total_loading_amount",
    "fieldtype": "Currency",
    "label": "Total Loading Amount"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Sales Loading",
+   "print_hide": 1,
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-12-31 17:27:36.675551",
+ "modified": "2022-12-31 23:58:52.159268",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
  "name": "Sales Loading",
