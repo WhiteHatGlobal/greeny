@@ -12,6 +12,44 @@ class SaleAdvice(Document):
 				frappe.throw("Total Quantity and Loading Quantity are mismatch")
 	def on_submit(self):
 		if (self.transport_type == "Own Vehicle"):
+			
+# Sales Loading Creation
+			if(self.create_sales_loading == 1):
+				doc=frappe.new_doc("Sales Loading")
+
+				tab1=self.loading_details_table
+				loading_emp=[]
+				for i in range(0,len(tab1)):
+					loading_emp.append({
+						"date":tab1[i].get("date"),
+						"employee":tab1[i].get("employee"),
+						"qty":tab1[i].get("qty"),
+						"rate":tab1[i].get("rate"),
+						"amount":tab1[i].get("amount"),
+					})
+
+				tab2=self.others_loading
+				loading_others=[]
+				for i in range(0,len(tab2)):
+					loading_others.append({
+						"date":tab2[i].get("date"),
+						"name1":tab2[i].get("name1"),
+						"qty":tab2[i].get("qty"),
+						"rate":tab2[i].get("rate"),
+						"amount":tab2[i].get("amount"),
+					})
+					
+				doc.update({
+					    "date":self.date,
+						"loading_details":loading_emp,
+						"others_loading":loading_others,
+					})
+				doc.save(ignore_permissions=True)
+				frappe.msgprint("Sales Loading are Created Successfully")
+
+
+	# Expense Claim Creation
+
 			if(self.expense_details):
 
 				table=self.expense_details
@@ -41,23 +79,32 @@ class SaleAdvice(Document):
 				doc.save(ignore_permissions=True)
 				frappe.msgprint("Expense are Created Successfully")
 
+# Additional Salary Creation
 
 			if(self.loading_details_table):
 
-					table1=self.loading_details_table
-					for i in range(0,len(table1)):
+					total_dict={}
+					for row in self.loading_details_table:
+						if row.get('employee') not in total_dict:
+							total_dict[row.get('employee')]=[]
+						total_dict[row.get('employee')].append({"date":row.date,"employee":row.employee,"qty":row.qty,"rate":row.rate,"amount":row.amount})
+					frappe.errprint(list(total_dict.values()))
+					for i in list(total_dict.values()):
+						frappe.errprint(i[0].get("employee"))
 						doc1=frappe.new_doc("Additional Salary")
-            
+						
 						doc1.update({
-							"employee":table1[i].get("employee"),
-							"sale_advice":self.name,
+							"employee":i[0].get("employee"),
+							"loading_details":i,
 							"salary_component":"Loading Salary",
-							"payroll_date":table1[i].get("date"),
-							"amount":table1[i].get("amount")
+							"payroll_date":self.date,
+							"amount":0,
+							
 						})
 						doc1.save(ignore_permissions=True)
-					frappe.msgprint("Additional Salary are Created Successfully")
+						frappe.msgprint("Additional Salary are Created Successfully")
 
+# Trasport Payment Creation
 			
 			if(self.others_loading):
 
@@ -71,6 +118,7 @@ class SaleAdvice(Document):
 						"rate":table2[i].get("rate"),
 						"amount":table2[i].get("amount"),
 					})
+				frappe.errprint(item2)
 				
 
 				doc2.update({
@@ -84,10 +132,11 @@ class SaleAdvice(Document):
 				doc2.save(ignore_permissions=True)
 				frappe.msgprint("Transport Payment are Created Successfully")
 
+# Sales Invoice Creation
 
 			doc=frappe.new_doc("Sales Invoice")
 			item=[{
-                		"item_code":self.item,
+                "item_code":self.item,
 				"qty":self.net_weight,
 				"qty2":self.qty
             }]
@@ -104,6 +153,8 @@ class SaleAdvice(Document):
             })
 			doc.save(ignore_permissions=True)
 			frappe.msgprint("Sales Invoice are Created Successfully")
+
+# Other Vehicle
 
 		if (self.transport_type == "Other Vehicle"):
 				doc1=frappe.new_doc("Sales Invoice")

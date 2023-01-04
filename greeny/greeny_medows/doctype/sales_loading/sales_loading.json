@@ -9,11 +9,9 @@
  "engine": "InnoDB",
  "field_order": [
   "naming_series",
-  "section_break_3",
-  "column_break_7",
   "date",
   "loading_details_section",
-  "loading_details_table",
+  "loading_details",
   "loading_by_others_section",
   "others_loading",
   "section_break_13",
@@ -35,39 +33,14 @@
    "options": "SL./.YY./.####"
   },
   {
-   "fieldname": "section_break_3",
-   "fieldtype": "Section Break"
-  },
-  {
-   "fieldname": "column_break_7",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fetch_from": "purchase_invoice.posting_date",
-   "fieldname": "date",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Created Date"
-  },
-  {
    "fieldname": "loading_details_section",
    "fieldtype": "Section Break",
    "label": "Loading by Greeny Employees"
   },
   {
-   "fieldname": "loading_details_table",
-   "fieldtype": "Table",
-   "options": "Sales Loading Details"
-  },
-  {
    "fieldname": "loading_by_others_section",
    "fieldtype": "Section Break",
    "label": "Loading by Others"
-  },
-  {
-   "fieldname": "others_loading",
-   "fieldtype": "Table",
-   "options": "Sales Loading Others"
   },
   {
    "fieldname": "section_break_13",
@@ -123,12 +96,27 @@
    "options": "Sales Loading",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "others_loading",
+   "fieldtype": "Table",
+   "options": "Sales Loading Others"
+  },
+  {
+   "fieldname": "loading_details",
+   "fieldtype": "Table",
+   "options": "Sales Loading Details"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-12-31 23:58:52.159268",
+ "modified": "2023-01-03 10:44:48.607619",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
  "name": "Sales Loading",

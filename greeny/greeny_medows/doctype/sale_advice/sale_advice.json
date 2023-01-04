@@ -88,7 +88,7 @@
   {
    "default": "Today",
    "fieldname": "date",
-   "fieldtype": "Datetime",
+   "fieldtype": "Date",
    "label": "Date",
    "read_only": 1
   },
@@ -419,7 +419,7 @@
    "link_fieldname": "sale_advice"
   }
  ],
- "modified": "2023-01-01 01:02:33.741268",
+ "modified": "2023-01-03 18:56:03.328237",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
  "name": "Sale Advice",

@@ -4,7 +4,7 @@ frappe.ui.form.on('Sales Loading', {
     validate: function(frm, cdt, cdn){
         var d = locals[cdt][cdn];
         var qty = 0;
-        frm.doc.loading_details_table.forEach(function (d) { qty += d.qty; });
+        frm.doc.loading_details.forEach(function (d) { qty += d.qty; });
         cur_frm.set_value("total_greeny", qty);
         refresh_field("total_greeny");
 
@@ -18,7 +18,7 @@ frappe.ui.form.on('Sales Loading', {
         cur_frm.set_value("total_loading_qty", total);
 
         var lo_amount = 0;
-        frm.doc.loading_details_table.forEach(function (d) { lo_amount += d.amount; });
+        frm.doc.loading_details.forEach(function (d) { lo_amount += d.amount; });
         cur_frm.set_value("greeny_loading_amount", lo_amount);
         refresh_field("greeny_loading_amount");
 

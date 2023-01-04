@@ -39,6 +39,7 @@ doctype_js = {"Purchase Receipt" : "/greeny_medows/dev_custom/purchase_receipt.j
 			  "Purchase Loading":"/greeny_medows/dev_custom/purchase_loading.js",
 			  "Sales Loading":"/greeny_medows/dev_custom/sales_loading.js",
 			  "Purchase Transport":"/greeny_medows/dev_custom/purchase_transport.js",
+			  "Additional Salary":"/greeny_medows/dev_custom/additional_salary.js"
 			  }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
