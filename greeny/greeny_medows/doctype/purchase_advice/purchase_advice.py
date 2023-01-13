@@ -175,7 +175,7 @@ class PurchaseAdvice(Document):
 					"supplier":self.supplier,
 					"set_posting_time": "1",
 					"posting_date":self.date,
-     					"purchase_advice":self.name,
+     				"purchase_advice":self.name,
 					"number_of_coconant":self.qty,
 					"bag_type":self.bag_type,
 					"gross_weight_whg":self.weight,

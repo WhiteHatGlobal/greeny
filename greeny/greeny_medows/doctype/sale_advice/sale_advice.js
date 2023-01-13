@@ -2,6 +2,22 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Sale Advice', {
+
+
+    transport_type: function(frm) {
+        if(cur_frm.doc.transport_type=="Own Vehicle"){
+            if(cur_frm.doc.create_sales_loading==0){
+                frm.set_query("select_sales_loading", function() {
+                    return {
+                        filters: {
+                            'docstatus':0
+                            
+                        }
+                    }
+                });
+        }
+    }
+	},
 	validate: function(frm, cdt, cdn){
 		if(cur_frm.doc.transport_type=="Own Vehicle"){
 
