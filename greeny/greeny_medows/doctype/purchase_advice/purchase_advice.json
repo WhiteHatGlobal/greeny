@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": ".#####",
+ "autoname": "PUR.MM.YY.-.###",
  "creation": "2022-12-03 14:55:11.722677",
  "default_view": "List",
  "doctype": "DocType",
@@ -417,7 +417,7 @@
    "link_fieldname": "purchase_advice"
   }
  ],
- "modified": "2023-01-01 01:10:07.581077",
+ "modified": "2023-01-20 12:32:08.464027",
  "modified_by": "Administrator",
  "module": "Greeny Medows",
  "name": "Purchase Advice",
