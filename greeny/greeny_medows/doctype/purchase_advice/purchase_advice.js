@@ -37,9 +37,9 @@ frappe.ui.form.on('Purchase Advice', {
         console.log(total)
         cur_frm.set_value("total_loading_qty", total);
 
-        if(cur_frm.doc.qty != cur_frm.doc.total_loading_qty) {
-            frappe.throw(__("Total Qty is not matched to Loaded Qty"))
-        }
+        // if(cur_frm.doc.qty != cur_frm.doc.total_loading_qty) {
+        //     frappe.throw(__("Total Qty is not matched to Loaded Qty"))
+        // }
 
         var total_amount = 0;
         total_amount=cur_frm.doc.greeny_loading_amount + cur_frm.doc.others_loading_amount
